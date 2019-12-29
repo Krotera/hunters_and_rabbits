@@ -6,8 +6,8 @@
 import unittest
 import sys
 
-sys.path.insert(0, '../hunters-and-rabbits') # Source files
-from graph import Vertex, Graph
+sys.path.insert(0, '../hunters_and_rabbits') # Source files
+from hr_graph import Vertex, Graph
 
 class BasicGraph(unittest.TestCase):
     def setUp(self):
