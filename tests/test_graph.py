@@ -43,7 +43,15 @@ class BasicGraph(unittest.TestCase):
         self.assertTrue(self.g.has_edge(self.v3.id, self.v4.id))
         self.assertFalse(self.g.has_edge(self.v2.id, self.v4.id))
 
+        self.assertEqual(self.g.get_vert(self.v1.id).color, 0)
+        self.assertEqual(self.g.get_vert(self.v2.id).color, 0)
+        self.assertEqual(self.g.get_vert(self.v3.id).color, 0)
+        self.assertEqual(self.g.get_vert(self.v4.id).color, 0)
+
         self.assertEqual(self.g.neighbors(self.v1.id), {self.v2, self.v3})
+        self.assertEqual(self.g.neighbors(self.v2.id), {self.v3, self.v1})
+        self.assertEqual(self.g.neighbors(self.v3.id), {self.v1, self.v2, self.v4})
+        self.assertEqual(self.g.neighbors(self.v4.id), {self.v3})
 
     def test_0_add_vert_normal(self):
         new_vert = Vertex(5,0)
