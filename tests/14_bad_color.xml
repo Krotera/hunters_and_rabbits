@@ -1,0 +1,11 @@
+<graph>
+    <vertex id="1" color="white"/>
+    <v id="2" color="black"/>
+    <v id="3" color="wisteria"/>
+    <v id="4" color="burgundy"/>
+    
+    <edge id1="1" id2="2"/>
+    <e id1="1" id2="3"/>
+    <e id1="2" id2="3"/>
+    <e id1="3" id2="4"/>
+</graph>

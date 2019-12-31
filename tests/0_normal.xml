@@ -1,0 +1,14 @@
+
+
+<graph>
+  
+    <vertex id="1"/>
+            <Vertex Id="2"/>
+    <V ID="3"/><v id="4"/>
+    <VERTEX id="5"/>
+    
+    <edge ID1="1" Id2="2"/>
+    <E iD1="1"  id2="3"/>
+    <Edge id1="2" id2="3"/>
+    <EDGE id1="3" id2="4"/>
+</graph>

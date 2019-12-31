@@ -1,0 +1,32 @@
+<!-- This is an example graph in XML. -->
+<graph>
+    <!--
+    Vertices are made with the tag "vertex" or just "v". 
+    
+    Vertices must a unique ID and, optionally, a color.
+    Specify black with "black" or just "b".
+    Specify white with "white" or just "w".
+    They default to black if not given a color.
+    
+    E.g., these are black vertices:
+    -->
+    <vertex id="1"/>
+    <v Id="2"/>
+    <v id="3" color="black"/>
+    <v id="4" color="b"/>
+    <!-- These are white vertices: -->
+    <v id="5" color="white"/>
+    <v id="6" color="w"/>
+    
+    <!--
+    Edges are made with the tag "edge" or just "e".
+    
+    Edges connect two vertices by the vertices' IDs, specified
+    in the attributes "id1" and "id2".
+    Edges are undirected and must be unique.
+    -->
+    <edge id1="1" id2="2"/>
+    <e id1="1"  id2="3"/>
+    <e id1="2" id2="3"/>
+    <e id1="3" id2="4"/>
+</graph>
