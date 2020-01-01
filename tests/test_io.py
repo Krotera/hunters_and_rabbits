@@ -5,6 +5,7 @@
 # Contact: 01101011@tuta.io
 import unittest
 import sys
+import os
 
 sys.path.insert(0, '../hunters_and_rabbits') # Source files
 from hr_graph import Vertex, Graph
@@ -60,7 +61,7 @@ class LoadGoodXML(unittest.TestCase):
         self.assertEqual(correct_g.neighbors(v5.id), set())
 
         # Parse XML file
-        parsed_g = load_graph("./LoadGoodXML_0_normal.xml")
+        parsed_g = load_graph("LoadGoodXML_0_normal.xml")
 
         # g1 == g2 if they have same edges and same vertices by id
         # (even if vertices differ otherwise)
@@ -104,7 +105,7 @@ class LoadGoodXML(unittest.TestCase):
         correct_g.add_edge(v2.id, v3.id)
         correct_g.add_edge(v3.id, v4.id)
 
-        parsed_g = load_graph("./LoadGoodXML_1_good_color.xml")
+        parsed_g = load_graph("LoadGoodXML_1_good_color.xml")
 
         self.assertTrue(parsed_g == correct_g)
 
@@ -120,18 +121,18 @@ class LoadGoodXML(unittest.TestCase):
 
     def test_LoadGoodXML_2_bad_graph_repeated_vert(self):
         with self.assertRaises(ValueError):
-            parsed_g = load_graph("./LoadGoodXML_2_bad_graph_repeated_vert.xml")
+            parsed_g = load_graph("LoadGoodXML_2_bad_graph_repeated_vert.xml")
 
     def test_LoadGoodXML_3_bad_graph_repeated_edge(self):
         with self.assertRaises(ValueError):
-            parsed_g = load_graph("./LoadGoodXML_3_bad_graph_repeated_edge.xml")
+            parsed_g = load_graph("LoadGoodXML_3_bad_graph_repeated_edge.xml")
 
     def test_LoadGoodXML_4_bad_graph_edge_to_missing_vert(self):
         with self.assertRaises(KeyError):
-            parsed_g = load_graph("./LoadGoodXML_4_bad_graph_edge_to_missing_vert.xml")
+            parsed_g = load_graph("LoadGoodXML_4_bad_graph_edge_to_missing_vert.xml")
 
     def test_LoadGoodXML_5_bad_graph_edge_to_missing_vert(self):
-        parsed_g = load_graph("./LoadGoodXML_5_empty.xml")
+        parsed_g = load_graph("LoadGoodXML_5_empty.xml")
 
         self.assertEqual(parsed_g.get_vert_count(), 0)
         self.assertEqual(parsed_g.get_edge_count(), 0)
@@ -139,43 +140,43 @@ class LoadGoodXML(unittest.TestCase):
 class LoadBadXML(unittest.TestCase):
     def test_LoadBadXML_0_missing_vert_id_att(self):
         with self.assertRaises(RuntimeError):
-            parsed_g = load_graph("./LoadBadXML_0_missing_vert_id_att.xml")
+            parsed_g = load_graph("LoadBadXML_0_missing_vert_id_att.xml")
 
     def test_LoadBadXML_1_missing_edge_id_att(self):
         with self.assertRaises(RuntimeError):
-            parsed_g = load_graph("./LoadBadXML_1_missing_edge_id_att.xml")
+            parsed_g = load_graph("LoadBadXML_1_missing_edge_id_att.xml")
 
     def test_LoadBadXML_2_bad_vert_id_att(self):
         with self.assertRaises(RuntimeError):
-            parsed_g = load_graph("./LoadBadXML_2_bad_vert_id_att.xml")
+            parsed_g = load_graph("LoadBadXML_2_bad_vert_id_att.xml")
 
     def test_LoadBadXML_3_bad_edge_id_att(self):
         with self.assertRaises(RuntimeError):
-            parsed_g = load_graph("./LoadBadXML_3_bad_edge_id_att.xml")
+            parsed_g = load_graph("LoadBadXML_3_bad_edge_id_att.xml")
 
     def test_LoadBadXML_4_missing_file(self):
         with self.assertRaises(FileNotFoundError):
-            parsed_g = load_graph("./thisfiledoesnotexist")
+            parsed_g = load_graph("thisfiledoesnotexist")
 
     def test_LoadBadXML_5_bad_root_elt(self):
         with self.assertRaises(RuntimeError):
-            parsed_g = load_graph("./LoadBadXML_5_bad_root_elt.xml")
+            parsed_g = load_graph("LoadBadXML_5_bad_root_elt.xml")
 
     def test_LoadBadXML_6_invalid_elt(self):
         with self.assertRaises(RuntimeError):
-            parsed_g = load_graph("./LoadBadXML_6_invalid_elt.xml")
+            parsed_g = load_graph("LoadBadXML_6_invalid_elt.xml")
 
     def test_LoadBadXML_7_bad_vert_elt(self):
         with self.assertRaises(RuntimeError):
-            parsed_g = load_graph("./LoadBadXML_7_bad_vert_elt.xml")
+            parsed_g = load_graph("LoadBadXML_7_bad_vert_elt.xml")
 
     def test_LoadBadXML_8_bad_vert_elt(self):
         with self.assertRaises(RuntimeError):
-            parsed_g = load_graph("./LoadBadXML_8_bad_edge_elt.xml")
+            parsed_g = load_graph("LoadBadXML_8_bad_edge_elt.xml")
 
     def test_LoadBadXML_9_bad_color(self):
         with self.assertRaises(RuntimeError):
-            parsed_g = load_graph("./LoadBadXML_9_bad_color.xml")
+            parsed_g = load_graph("LoadBadXML_9_bad_color.xml")
 
 class SaveGraph(unittest.TestCase):
     def test_SaveGraph_0_normal_graph(self):
@@ -198,12 +199,12 @@ class SaveGraph(unittest.TestCase):
         saved_g.add_edge(v2.id, v3.id)
         saved_g.add_edge(v3.id, v4.id)
 
-        saved_xml_str = save_graph(saved_g, "./SaveGraph_0_saved_normal_graph.xml")
+        saved_xml_str = save_graph(saved_g, "SaveGraph_0_saved_normal_graph.xml")
         # Note: testing the string against a model is tedious because the order
         # of edges varies.
 
         # Test loaded graph
-        loaded_g = load_graph("./SaveGraph_0_saved_normal_graph.xml")
+        loaded_g = load_graph("SaveGraph_0_saved_normal_graph.xml")
 
         self.assertEqual(loaded_g.get_vert_count(), 5)
         self.assertEqual(loaded_g.get_edge_count(), 4)
@@ -232,8 +233,46 @@ class SaveGraph(unittest.TestCase):
         self.assertEqual(loaded_g.neighbors(v4.id), {v3})
         self.assertEqual(loaded_g.neighbors(v5.id), set())
 
-    # def test_SaveGraph_1_empty_graph(self):
+    def test_SaveGraph_1_empty_graph(self):
+        saved_g = Graph()
 
+        saved_xml_str = save_graph(saved_g, "SaveGraph_1_empty_graph.xml")
+        empty_graph_xml_str = '<?xml version="1.0" ?>\n<graph/>\n'
+
+        self.assertEqual(saved_xml_str, empty_graph_xml_str)
+
+        loaded_g = load_graph("SaveGraph_1_empty_graph.xml")
+
+        self.assertEqual(loaded_g.get_vert_count(), 0)
+        self.assertEqual(loaded_g.get_edge_count(), 0)
+
+        # Add some stuff to the graph
+        v1 = Vertex("1", "black")
+        v2 = Vertex("2", "white")
+
+        loaded_g.add_vert(v1)
+        loaded_g.add_vert(v2)
+        loaded_g.add_edge("1", "2")
+
+        saved_xml_str = save_graph(loaded_g, "SaveGraph_1_empty_graph.xml")
+
+        reloaded_g = load_graph("SaveGraph_1_empty_graph.xml")
+
+        self.assertEqual(reloaded_g.get_vert_count(), 2)
+        self.assertEqual(reloaded_g.get_edge_count(), 1)
+        self.assertTrue(reloaded_g.has_vert("1"))
+        self.assertTrue(reloaded_g.has_vert("2"))
+        self.assertTrue(reloaded_g.has_edge("2", "1"))
+        self.assertEqual(reloaded_g.get_vert("1").color, "black")
+        self.assertEqual(reloaded_g.get_vert("2").color, "white")
+
+        # Remove the stuff
+        reloaded_g.del_vert("1")
+        reloaded_g.del_vert("2")
+
+        saved_xml_str = save_graph(reloaded_g, "SaveGraph_1_empty_graph.xml")
+
+        self.assertEqual(saved_xml_str, empty_graph_xml_str)
 
 if __name__ == "__main__":
     unittest.main()

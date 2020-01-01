@@ -4,16 +4,19 @@
 #
 # Contact: 01101011@tuta.io
 import xml.etree.ElementTree as ET
+from xml.dom import minidom # For pretty printing XML
 
 from hr_graph import Vertex, Graph
 
 def load_graph(path):
     """Read an XML file at 'path' and return the graph it describes."""
     g = Graph()
-    vertices = []
-    edges = []
+
     tree = ET.parse(path)
     root = tree.getroot()
+
+    vertices = []
+    edges = []
 
     if not root.tag.lower() == "graph":
         raise RuntimeError("load_graph(" + path + "): Root tag of a graph " +\
@@ -71,5 +74,38 @@ def load_graph(path):
     return g
 
 def save_graph(g, path):
-    """Save the graph 'g' to an XML file at 'path'."""
-    raise NotImplementedError()
+    """Save the graph 'g' to an XML file at 'path' and return its XML string."""
+    root = ET.Element("graph")
+    tree = ET.ElementTree(root)
+
+    vertices = []
+    edges = []
+
+    # Collect vertices and edges (as ID strings + any attributes)
+    for vert, neighbors in g.items():
+        vertices.append((vert.id, vert.color))
+
+        for n in neighbors:
+            if (n.id, vert.id) not in edges: # Avoid reversed copy of this edge
+                edges.append((vert.id, n.id))
+
+    # Add collected vertices...
+    for vert_id, color in vertices:
+        v_elt = ET.SubElement(root, "vertex")
+        v_elt.set("id", vert_id)
+        v_elt.set("color", color)
+
+    # ...then collected edges
+    for e in edges:
+        e_elt = ET.SubElement(root, "edge")
+        e_elt.set("id1", e[0])
+        e_elt.set("id2", e[1])
+
+    # Add newlines and indents to XML
+    formatted_xml_str = minidom.parseString(ET.tostring(root)).toprettyxml(indent="    ")
+
+    # Print XML to file
+    with open(path, "w") as save_file:
+        save_file.write(formatted_xml_str)
+
+    return formatted_xml_str
