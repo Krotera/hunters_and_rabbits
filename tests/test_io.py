@@ -5,7 +5,6 @@
 # Contact: 01101011@tuta.io
 import unittest
 import sys
-import os
 
 sys.path.insert(0, '../hunters_and_rabbits') # Source files
 from hr_graph import Vertex, Graph
