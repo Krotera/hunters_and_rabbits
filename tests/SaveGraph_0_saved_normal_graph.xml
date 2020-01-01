@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<graph>
+    <vertex id="1" color="black"/>
+    <vertex id="2" color="white"/>
+    <vertex id="3" color="black"/>
+    <vertex id="4" color="white"/>
+    <vertex id="5" color="black"/>
+    <edge id1="1" id2="2"/>
+    <edge id1="1" id2="3"/>
+    <edge id1="2" id2="3"/>
+    <edge id1="3" id2="4"/>
+</graph>
