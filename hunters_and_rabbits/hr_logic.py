@@ -3,7 +3,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #
 # Contact: 01101011@tuta.io
-# import copy
 
 from hr_graph import Vertex, Graph
 
