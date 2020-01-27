@@ -1,4 +1,18 @@
+# Generic Python build stuff
+build/
+dist/
+*.egg-info/
+*.egg
+*.py[cod]
+__pycache__/
+*.so
+*~
+
+# Tox/pytest
+.tox
+.cache
+
+# Particulars
 *.pdf
 notes.txt
 example_recolor.png
-__pycache__/
