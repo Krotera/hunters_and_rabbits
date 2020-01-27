@@ -20,11 +20,11 @@ import hr_logic
 
 # Dash app
 app = dash.Dash(__name__)
-# Local hr_graph and dict of vertices clicked this turn to be used by app as
-# globals.
+# Variables to be used by app as globals.
 loaded_hr_graph = hr_graph.Graph()
 clicked_verts_this_turn = dict()
-# (Ideally, we'd have to/from JSON functions and store these in hidden
+node_positions = None
+# (Ideally, we'd have to/from JSON functions and store globals in hidden
 # divs.
 # Dash discourages using globals but only in the sense that it breaks
 # multi-user sessions.
@@ -33,6 +33,8 @@ clicked_verts_this_turn = dict()
 
 def figure_from_hr_graph(hr_graph):
     """Return a plotly.graph_objects.Figure of the given hr_graph.Graph."""
+    global node_positions
+
     graph_fig = go.Figure(
         data = [],
         layout = go.Layout(
@@ -73,8 +75,9 @@ def figure_from_hr_graph(hr_graph):
                 # nx.Graph adds nodes while adding edges
                 nx_graph.add_edge(node, neighbor)
 
-        # Assign node positions
-        node_positions = nx.layout.spring_layout(nx_graph)
+        # Assign node positions (but don't re-assign them)
+        if node_positions is None:
+            node_positions = nx.layout.spring_layout(nx_graph)
 
         # Construct node trace
         node_trace = go.Scatter(
@@ -282,6 +285,7 @@ def clicked_vertex_or_go_or_turn_button(clickData, go_clicks, load_clicks, displ
     """
     global loaded_hr_graph
     global clicked_verts_this_turn
+    global node_positions
 
     ctx = dash.callback_context
     thing_clicked = ctx.triggered[0]["prop_id"].split(".")[0]
@@ -385,6 +389,7 @@ def clicked_vertex_or_go_or_turn_button(clickData, go_clicks, load_clicks, displ
         except Exception as e:
             return displayed_fig, k_curr, normal_k_color, True, repr(e), curr_turn
 
+        node_positions = None # Wipe positions to regenerate for new graph
         new_fig = figure_from_hr_graph(loaded_hr_graph)
 
         return new_fig, k_curr, normal_k_color, False, "", "Turn: 0"

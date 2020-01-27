@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     
 setuptools.setup(
     name="hunters_and_rabbits",
-    version="1.0.0",
+    version="1.0.1",
     author="Krotera",
     author_email="01101011@tuta.io",
     description="A Dash implementation of the Hunters and Rabbits graph game",
