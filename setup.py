@@ -11,7 +11,7 @@ setuptools.setup(
     description="A Dash implementation of the Hunters and Rabbits graph game",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="",
+    url="https://github.com/Krotera/hunters_and_rabbits",
     packages=setuptools.find_packages(),
     install_requires=[
         "networkx>=2.4",
