@@ -9,8 +9,11 @@ build_exe_options = {"packages": ["jinja2.ext"], "excludes": []}
 # GUI applications require a different base on Windows (the default is for a
 # console application).
 base = None
-if sys.platform == "win32":
-    base = "Win32GUI"
+# BUT... on Windows, it causes this crash:
+# https://github.com/pallets/flask/issues/3447
+# With base left None, we get a cmd.exe window and the program works.
+# if sys.platform == "win32":
+#     base = "Win32GUI"
 
 setup(
     name="hunters_and_rabbits",
