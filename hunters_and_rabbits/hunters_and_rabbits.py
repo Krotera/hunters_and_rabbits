@@ -445,7 +445,7 @@ def quit(n_clicks, quit_button_style, quit_info_style):
         )
 
 
-if __name__ == "__main__":
+def main():
     # Probable free ports in the 8000s according to:
     # http://www.networksorcery.com/enp/protocol/ip/ports08000.htm
     free_ports = [
@@ -531,3 +531,6 @@ if __name__ == "__main__":
 
     webbrowser.open_new_tab(f"http://localhost:{port}") # Autolaunch browser
     app.run_server(debug = False, port = port)
+
+if __name__ == "__main__":
+    main()
