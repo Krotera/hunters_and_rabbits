@@ -2,16 +2,10 @@ import setuptools
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
-    
+
 setuptools.setup(
     name="hunters_and_rabbits",
-    version="1.0.1",
-    author="Krotera",
-    author_email="01101011@tuta.io",
-    description="A Dash implementation of the Hunters and Rabbits graph game",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    url="https://github.com/Krotera/hunters_and_rabbits",
+    version="1.1.0",
     packages=setuptools.find_packages(),
     install_requires=[
         "networkx>=2.4",
@@ -22,10 +16,18 @@ setuptools.setup(
         "dash-html-components>=1.0.2",
         "numpy>=1.18.0",
     ],
-    classifiers=[ # https://pypi.org/classifiers/
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
-        "Operating System :: OS Independent",
-    ],
     python_requires='>=3.8',
+
+    # PyPI metadata
+    author="Krotera",
+    author_email="01101011@tuta.io",
+    description="A Dash implementation of the Hunters and Rabbits graph game",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/Krotera/hunters_and_rabbits",
+    classifiers=[
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+    "Operating System :: OS Independent",
+    ]
 )
