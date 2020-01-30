@@ -5,6 +5,7 @@
 # Contact: 01101011@tuta.io
 import random
 import webbrowser
+from time import sleep
 
 import dash
 import dash_core_components as dcc
@@ -529,7 +530,19 @@ def main():
     # the next reboot (when all app instances are killed and all ports freed).
     port = random.choice(free_ports)
 
-    webbrowser.open_new_tab(f"http://localhost:{port}") # Autolaunch browser
+    webbrowser.open("") # Autolaunch browser
+    # Unfortunately, the Dash app seems to start with a variable delay.
+    # Every few starts (especially when the browser isn't
+    # already open), the browser starts and loads http://localhost:{port}
+    # before Dash has initialized.
+    # A refresh on the page handles this, but it's annoying.
+    # It doesn't seem to happen with a delay of 2 seconds or longer between
+    # the browser starting and loading the app page.
+    # Ugly since we have to open a new window and a new tab in it, but seems to
+    # guarantee successful load. As a plus, it doesn't hijack existing browser
+    # windows.
+    sleep(2)
+    webbrowser.open_new_tab(f"http://localhost:{port}") # Open tab to app
     app.run_server(debug = False, port = port) # Launch Dash app
 
 if __name__ == "__main__":
