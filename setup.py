@@ -10,7 +10,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="hunters_and_rabbits",
-    version="1.1.0",
+    version="1.1.1",
     packages=setuptools.find_packages(),
     install_requires=[
         "networkx>=2.4",
