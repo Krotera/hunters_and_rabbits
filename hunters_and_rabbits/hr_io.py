@@ -11,6 +11,11 @@ from hr_graph import Vertex, Graph
 def load_graph(path):
     """Read an XML file at 'path' and return the graph it describes."""
     g = Graph()
+    # Remove surrounding "s if given "path"
+    # (Common in Windows when using Shift + right-click > Copy as path)
+    path_split = path.split("\"")
+    if len(path_split) == 3:
+        path = path_split[1]
 
     tree = ET.parse(path)
     root = tree.getroot()
