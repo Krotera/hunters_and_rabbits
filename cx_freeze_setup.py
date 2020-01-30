@@ -1,3 +1,8 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# Contact: 01101011@tuta.io
 import sys
 from cx_Freeze import setup, Executable
 sys.path.insert(0, "hunters_and_rabbits")
