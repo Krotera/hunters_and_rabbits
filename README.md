@@ -10,7 +10,7 @@ A [Dash](https://dash.plot.ly/) implementation of Hunters and Rabbits,
 Alfaro, Blankenship, Cummings, & Humburg. "Hunters and Rabbits on Path- and Cycle-like Graphs." (2019)
 
 ## How
-**Windows:** To use without installing Python, pip, or anything else, download and extract the `hr_windows` ZIP from the "releases" tab of this repo and double-click the `hunters_and_rabbits.exe`. 
+**Windows:** To use without installing Python, pip, or anything else, download and extract the `hr_windows` ZIP from the [releases](https://github.com/Krotera/hunters_and_rabbits/releases) of this repo and double-click the `hunters_and_rabbits.exe`. 
 
 **Linux:** Similarly, pick the `hr_linux` ZIP and launch the `hunters_and_rabbits` executable.
 
