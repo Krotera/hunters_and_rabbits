@@ -10,11 +10,21 @@ A [Dash](https://dash.plot.ly/) implementation of Hunters and Rabbits,
 Alfaro, Blankenship, Cummings, & Humburg. "Hunters and Rabbits on Path- and Cycle-like Graphs." (2019)
 
 ## How
-Download and extract the ZIP of this repo. In the extracted directory, run: "`pip install .`"
+**Windows:** To use without installing Python, pip, or anything else, download and extract the `hr_windows` ZIP from the "releases" tab of this repo and double-click the `hunters_and_rabbits.exe`. 
 
-Then, running `python hunters_and_rabbits.py` should open a browser window or tab with the running Dash app. 
+**Linux:** Similarly, pick the `hr_linux` ZIP and launch the `hunters_and_rabbits` executable.
 
-There, use the GUI to load a graph file (see `example_graph.xml` for the format), and it'll be displayed as a network graph with clickable vertices. Fire at *k* vertices, press *GO* to recolor the graph, and repeat. 
+To use the traditional way, download and extract the ZIP of this repo. In the extracted directory, run 
+
+`pip install .`
+
+and then 
+
+`python .../hunters_and_rabbits.py`
+
+A browser window or tab should open (with some delay) with the running Dash app on a local port.
+
+There, load a graph by entering the path to a graph file like `example_graph.xml`. (On Windows, `Shift + Right-click > Copy as path` is handy for copying file paths.) The graph will be displayed as a network graph with clickable vertices. Fire at *k* vertices, press *GO* to recolor the graph, and repeat. 
 
 Happy hunting.
 
