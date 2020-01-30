@@ -530,7 +530,7 @@ def main():
     port = random.choice(free_ports)
 
     webbrowser.open_new_tab(f"http://localhost:{port}") # Autolaunch browser
-    app.run_server(debug = False, port = port)
+    app.run_server(debug = False, port = port) # Launch Dash app
 
 if __name__ == "__main__":
     main()
