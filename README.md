@@ -14,7 +14,7 @@ Alfaro, Blankenship, Cummings, & Humburg. "Hunters and Rabbits on Path- and Cycl
 
 **Linux:** Similarly, pick the `hr_linux` ZIP and launch the `hunters_and_rabbits` executable.
 
-To use the traditional way, download and extract the ZIP of this repo. In the extracted directory, run 
+To use the traditional way, first install Python and pip. Then, download and extract the ZIP of this repo. In the extracted directory, run 
 
 `pip install .`
 
